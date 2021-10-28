@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <title>CIA System</title>
+
+        <!-- Bootstrap -->
+        <link href="http://tnvqis03/Dashboard_Template/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <!-- Font Awesome -->
+        <link
+            href="http://tnvqis03/Dashboard_Template/vendors/fontAwesome47/css/font-awesome.min.css"
+            rel="stylesheet"
+        />
+        <link href="http://tnvqis03/Dashboard_Template/vendors/fontAwesome6B/css/all.css" rel="stylesheet" />
+        <!-- NProgress -->
+        <link href="http://tnvqis03/Dashboard_Template/vendors/nprogress/nprogress.css" rel="stylesheet" />
+        <!-- iCheck -->
+        <link href="http://tnvqis03/Dashboard_Template/vendors/iCheck/skins/flat/green.css" rel="stylesheet" />
+
+        <!-- bootstrap-progressbar -->
+        <link
+            href="http://tnvqis03/Dashboard_Template/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css"
+            rel="stylesheet"
+        />
+        <!-- JQVMap -->
+        <link href="http://tnvqis03/Dashboard_Template/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
+        <!-- bootstrap-daterangepicker -->
+        <link
+            href="http://tnvqis03/Dashboard_Template/vendors/bootstrap-daterangepicker/daterangepicker.css"
+            rel="stylesheet"
+        />
+
+        <!-- Custom Theme Style -->
+        <link href="http://tnvqis03/Dashboard_Template/build/css/custom.min.css" rel="stylesheet" />
+        <link href="http://tnvqis03/Dashboard_Template/build/css/custom_MIS.css" rel="stylesheet" />
+
+        <!-- Datatables -->
+        <link
+            href="http://tnvqis03/Dashboard_Template/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <link
+            href="http://tnvqis03/Dashboard_Template/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <link
+            href="http://tnvqis03/Dashboard_Template/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <link
+            href="http://tnvqis03/Dashboard_Template/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <link
+            href="http://tnvqis03/Dashboard_Template/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/cia.css" />
+    </head>
+
+    <body class="nav-md" style="overflow-x: hidden">
+        <div class="container body">
+            <div class="main_container">
+                <div class="col-md-3 left_col">
+                    <div class="left_col scroll-view">
+                        <div class="navbar nav_title" style="border: 0">
+                            <a href="index.html" class="site_title" style="margin-top: 0">
+                                <!--i class="fa fa-paw"></i-->
+                                <span>
+                                    <img src="images/favicon.png" align="absmiddle" />
+                                    QM</span
+                                ></a
+                            >
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <!-- menu profile quick info -->
+                        <div class="profile clearfix">
+                            <div class="profile_pic"></div>
+                            <div class="profile_info">
+                                <span>Welcome,</span>
+                                <h2 id="empName"></h2>
+                            </div>
+                        </div>
+                        <!-- /menu profile quick info -->
+
+                        <br />
+
+                        <!-- sidebar menu -->
+                        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                            <div class="menu_section" id="menuRoot">
+                                <ul class="nav side-menu"></ul>
+                            </div>
+                        </div>
+                        <!-- /sidebar menu -->
+
+                        <!-- /menu footer buttons -->
+                        <div class="sidebar-footer hidden-small">
+                            <a data-toggle="tooltip" data-placement="top" title="Settings">
+                                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                            </a>
+                            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                            </a>
+                            <a data-toggle="tooltip" data-placement="top" title="Lock">
+                                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                            </a>
+                            <a data-toggle="tooltip" data-placement="top" title="Logout" href="javascript:logout()">
+                                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                            </a>
+                        </div>
+                        <!-- /menu footer buttons -->
+                    </div>
+                </div>
+
+                <!-- top navigation -->
+                <div class="top_nav">
+                    <div class="nav_menu">
+                        <div class="nav toggle">
+                            <a href="#" id="fullScreenURL" onclick="switchFullScreen()">
+                                <i class="fas fa-expand-arrows-alt" id="fullScreenIcon"></i>
+                            </a>
+                        </div>
+                        <nav class="nav navbar-nav">
+                            <ul class="navbar-right">
+                                <li class="nav-item dropdown open" style="padding-left: 15px">
+                                    <a
+                                        href="javascript:;"
+                                        class="user-profile dropdown-toggle"
+                                        aria-haspopup="true"
+                                        id="navbarDropdown"
+                                        data-toggle="dropdown"
+                                        aria-expanded="false"
+                                    >
+                                        <span id="navEmpName"></span>
+                                    </a>
+                                    <div
+                                        class="dropdown-menu dropdown-usermenu pull-right"
+                                        aria-labelledby="navbarDropdown"
+                                    >
+                                        <a class="dropdown-item" href="javascript:;"> Profile</a>
+                                        <a class="dropdown-item" href="javascript:;">
+                                            <span class="badge bg-red pull-right">50%</span>
+                                            <span>Settings</span>
+                                        </a>
+                                        <a class="dropdown-item" href="javascript:;">Help</a>
+                                        <a class="dropdown-item" href="javascript:logout()"
+                                            ><i class="fa fa-sign-out pull-right"></i> Log Out</a
+                                        >
+                                    </div>
+                                </li>
+
+                                <li role="presentation" class="nav-item dropdown open">
+                                    <a
+                                        href="javascript:;"
+                                        class="dropdown-toggle info-number"
+                                        id="navbarDropdown1"
+                                        data-toggle="dropdown"
+                                        aria-expanded="false"
+                                    >
+                                        <i class="fa fa-envelope-o"></i>
+                                        <span class="badge bg-green">6</span>
+                                    </a>
+                                    <ul
+                                        class="dropdown-menu list-unstyled msg_list"
+                                        role="menu"
+                                        aria-labelledby="navbarDropdown1"
+                                    >
+                                        <li class="nav-item">
+                                            <a class="dropdown-item">
+                                                <span class="image"
+                                                    ><img src="images/img.jpg" alt="Profile Image"
+                                                /></span>
+                                                <span>
+                                                    <span>John Smith</span>
+                                                    <span class="time">3 mins ago</span>
+                                                </span>
+                                                <span class="message">
+                                                    Film festivals used to be do-or-die moments for movie makers. They
+                                                    were where...
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="dropdown-item">
+                                                <span class="image"
+                                                    ><img src="images/img.jpg" alt="Profile Image"
+                                                /></span>
+                                                <span>
+                                                    <span>John Smith</span>
+                                                    <span class="time">3 mins ago</span>
+                                                </span>
+                                                <span class="message">
+                                                    Film festivals used to be do-or-die moments for movie makers. They
+                                                    were where...
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="dropdown-item">
+                                                <span class="image"
+                                                    ><img src="images/img.jpg" alt="Profile Image"
+                                                /></span>
+                                                <span>
+                                                    <span>John Smith</span>
+                                                    <span class="time">3 mins ago</span>
+                                                </span>
+                                                <span class="message">
+                                                    Film festivals used to be do-or-die moments for movie makers. They
+                                                    were where...
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="dropdown-item">
+                                                <span class="image"
+                                                    ><img src="images/img.jpg" alt="Profile Image"
+                                                /></span>
+                                                <span>
+                                                    <span>John Smith</span>
+                                                    <span class="time">3 mins ago</span>
+                                                </span>
+                                                <span class="message">
+                                                    Film festivals used to be do-or-die moments for movie makers. They
+                                                    were where...
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <div class="text-center">
+                                                <a class="dropdown-item">
+                                                    <strong>See All Alerts</strong>
+                                                    <i class="fa fa-angle-right"></i>
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- /top navigation -->
+                <!-- page content -->
+                <div class="right_col right-col" role="main">
+                    <div id="header-fix">
+                        <ul class="icon-nav">
+                            <li>
+                                <a href="#">
+                                    <i class="fas fa-cog"></i>
+                                </a>
+                            </li>
+                            <li id="fullScreenURL-big" class="d-none">
+                                <a href="#" onclick="switchFullScreen()">
+                                    <i class="fas fa-expand-arrows-alt"></i>
+                                </a>
+                            </li>
+                            <li class="d-none">
+                                <a class="link-home" href="#">
+                                    <i class="fas fa-home"></i>
+                                </a>
+                            </li>
+                            <li class="d-none">
+                                <a href="#">
+                                    <i class="fas fa-search-plus"></i>
+                                </a>
+                            </li>
+                            <li class="d-none">
+                                <a href="#">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="light-box">
+                            <div class="light-item">
+                                <span class="light-title">客戶排名達標率</span>
+                                <div class="light-content">
+                                    <div id="RankingPast"></div>
+                                    <div id="RankingPerformance">
+                                        <img src="./images/無target持平.png" alt="" />
+                                    </div>
+                                    <div id="RankingCurrent"></div>
+                                </div>
+                            </div>
+                            <div class="light-item">
+                                <span class="light-title">COPQ/m<sup>2</sup></span>
+                                <div class="light-content">
+                                    <div id="pastCOPQ"></div>
+                                    <div id="COPQPerformance">
+                                        <img src="./images/無target持平.png" alt="" />
+                                    </div>
+                                    <div id="currentCOPQ"></div>
+                                </div>
+                            </div>
+                            <div class="light-item">
+                                <span class="light-title">CAERB</span>
+                                <div class="light-content">
+                                    <div id="CAERB_total"></div>
+                                    <div id="CAERBPerformance">
+                                        <img src="./images/無target持平.png" alt="" />
+                                    </div>
+                                    <div id="CAERB_target"></div>
+                                </div>
+                            </div>
+                            <div class="light-item">
+                                <span class="light-title">OBA Sorting Cost</span>
+                                <div class="light-content">
+                                    <div id="OBA_Estimate"></div>
+                                    <div id="OBAPerformance">
+                                        <img src="./images/無target持平.png" alt="" />
+                                    </div>
+                                    <div id="OBA_Cost_Target"></div>
+                                </div>
+                            </div>
+                            <div class="light-item">
+                                <span class="light-title">VLRR達標率</span>
+                                <div class="light-content">
+                                    <div id="VLRR_Past">
+                                        <span class="value"></span>
+                                        <span>%</span>
+                                    </div>
+                                    <div id="VLRR_Performance">
+                                        <img src="./images/無target持平.png" alt="" />
+                                    </div>
+                                    <div id="VLRR_Current">
+                                        <span class="value"></span>
+                                        <span>%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="light-item">
+                                <span class="light-title">客責吸收</span>
+                                <div class="light-content">
+                                    <div id="CID_dppm">
+                                        <span class="value"></span>
+                                        <span>dppm</span>
+                                    </div>
+                                    <div id="CID_Gain">
+                                        <span class="value"></span>
+                                        <span>USD</span>
+                                    </div>
+                                    <div id="CID_Effect">
+                                        <span class="value"></span>
+                                        <span>%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="selector-bar">
+                                <div>
+                                    <span>BU</span
+                                    ><select id="downlist-bu">
+                                        <option value="none">---請選擇---</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <span>Brand</span
+                                    ><select id="downlist-brand" disabled>
+                                        <option value="none">---請選擇---</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <span>SI</span
+                                    ><select id="downlist-si" disabled>
+                                        <option value="none">---請選擇---</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="background-worldmap"></div>
+                    <div id="main-content">
+                        <div class="icon-box">
+                            <ul class="nav-icon">
+                                <li class="selected">
+                                    <img
+                                        src="./images/左側功能 icon/競爭對手(靛).png"
+                                        alt="opponents"
+                                        srcset=""
+                                        title="競爭對手"
+                                    />
+                                </li>
+                                <li class="">
+                                    <img
+                                        src="./images/左側功能 icon/組織圖(灰).png"
+                                        alt="organization"
+                                        srcset=""
+                                        title="組織圖"
+                                    />
+                                </li>
+                                <li class="">
+                                    <img
+                                        src="./images/左側功能 icon/檢驗涵蓋率(灰).png"
+                                        alt="cover"
+                                        srcset=""
+                                        title="檢驗涵蓋率"
+                                    />
+                                </li>
+                                <li class="">
+                                    <img
+                                        src="./images/左側功能 icon/休假停工(灰).png"
+                                        alt="vacation"
+                                        srcset=""
+                                        title="休假停工"
+                                    />
+                                </li>
+                                <li class="">
+                                    <img
+                                        src="./images/左側功能 icon/客戶目標規格(灰).png"
+                                        alt="target"
+                                        srcset=""
+                                        title="客戶目標規格"
+                                    />
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="root">
+                            <div></div>
+                            <div>
+                                <div></div>
+                                <div>
+                                    <div id="rosePieCQ1"></div>
+                                    <div id="rosePieCQ2"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="news-block">
+                                    <div class="news-header">
+                                        <h1>NEWS</h1>
+                                        <a href=""> 新增 </a>
+                                    </div>
+                                    <div class="news-content"></div>
+                                    <div class="news-footer">
+                                        <a href="">More...</a>
+                                    </div>
+                                </div>
+                                <div class="word-cloud-block">
+                                    <div class="word-cloud-header">
+                                        <h1>情資文字雲</h1>
+                                    </div>
+                                    <div class="word-cloud-content"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="page-overall"></div>
+                        <div id="page-opponents" class="page"></div>
+                        <div id="page-organization" class="page"></div>
+                        <div id="page-cover" class="page"></div>
+                        <div id="page-vacation" class="page"></div>
+                        <div id="page-target" class="page"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- jQuery -->
+        <script src="http://tnvqis03/Dashboard_Template/vendors/jquery/dist/jquery.min.js"></script>
+        <script src="http://tnvqis03/Dashboard_Template/build/js/jquery.url.js"></script>
+        <!-- Bootstrap -->
+        <script src="http://tnvqis03/Dashboard_Template/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- FastClick -->
+        <script src="http://tnvqis03/Dashboard_Template/vendors/fastclick/lib/fastclick.js"></script>
+        <!-- NProgress -->
+        <script src="http://tnvqis03/Dashboard_Template/vendors/nprogress/nprogress.js"></script>
+        <!-- iCheck -->
+        <script src="http://tnvqis03/Dashboard_Template/vendors/iCheck/icheck.min.js"></script>
+        <!-- bootstrap-daterangepicker -->
+        <script src="http://tnvqis03/Dashboard_Template/vendors/moment/min/moment.min.js"></script>
+        <script src="http://tnvqis03/Dashboard_Template/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+        <!-- ECharts -->
+        <script src="http://tnvqis03/Dashboard_Template/vendors/echarts/echarts-5.0.2/dist/echarts.min.js"></script>
+        <script src="http://tnvqis03/Dashboard_Template/vendors/echarts/map/js/world.js"></script>
+
+        <!-- Datatables -->
+        <script src="http://tnvqis03/Dashboard_Template/vendors/datatables.net-bs/js/jquery.dataTables.min.js"></script>
+        <script src="http://tnvqis03/Dashboard_Template/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <script src="http://tnvqis03/Dashboard_Template/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="http://tnvqis03/Dashboard_Template/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+        <script src="http://tnvqis03/Dashboard_Template/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+        <script src="http://tnvqis03/Dashboard_Template/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+        <script src="http://tnvqis03/Dashboard_Template/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+        <script src="http://tnvqis03/Dashboard_Template/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+        <script src="http://tnvqis03/Dashboard_Template/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+        <script src="http://tnvqis03/Dashboard_Template/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="http://tnvqis03/Dashboard_Template/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+        <script src="http://tnvqis03/Dashboard_Template/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+        <script src="http://tnvqis03/Dashboard_Template/vendors/jszip/dist/jszip.min.js"></script>
+        <script src="http://tnvqis03/Dashboard_Template/vendors/pdfmake/build/pdfmake.min.js"></script>
+        <script src="http://tnvqis03/Dashboard_Template/vendors/pdfmake/build/vfs_fonts.js"></script>
+        <!-- swiper -->
+        <script src="swiper-bundle.min.js"></script>
+        <!-- Custom Theme Scripts -->
+        <script src="http://tnvqis03/Dashboard_Template/build/js/menu.js"></script>
+        <script src="http://tnvqis03/Dashboard_Template/build/js/custom.js"></script>
+        <script src="http://tnvqis03/Dashboard_Template/build/js/custom_MIS.js"></script>
+        <script src="backgroundmap.js"></script>
+        <script src="rosePie.js"></script>
+        <script src="index.js"></script>
+    </body>
+</html>
