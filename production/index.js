@@ -1,7 +1,11 @@
 // jsonPath
 jsonPath = 'http://tnvqis03/JsonServiceTest'
 const getUrlString = new URL(window.location.href)
-
+// fullscreen
+if (!getUrlString.searchParams.has('fullscreen')) {
+    getUrlString.searchParams.set('fullscreen', 'y')
+    location.href = getUrlString.href
+}
 // dom
 const rightCol = document.querySelector('.right-col'),
     btnFullscreen = document.querySelector('#fullScreenURL'),
@@ -125,9 +129,9 @@ const oraganizationPage = (name) => {
     const divContent = document.createElement('div')
     const iframe = document.createElement('iframe')
     divHeader.className = 'page-header'
-    divHeader.innerText = brandSelected.toUpperCase()
+    divHeader.innerText = option.brandSelected.toUpperCase()
     divContent.className = 'page-content'
-    iframe.src = 'http://tnvqis03/COMPONENT/orgChart.do?customer=' + brandSelected
+    iframe.src = 'http://tnvqis03/COMPONENT/orgChart.do?customer=' + option.brandSelected
     divContent.append(iframe)
     pageMain.innerHTML = ''
     pageMain.append(divHeader, divContent)
@@ -515,6 +519,14 @@ iconNav.addEventListener('click', (params) => {
         })()
     } else if (target.matches('.fa-search-plus')) {
         iconBox.style.display = 'none'
+        let url = new URL(window.location.href)
+        let pageName = 'overall'
+        if (url.searchParams.has('page')) {
+            url.searchParams.set('page', pageName)
+        } else {
+            url.searchParams.append('page', pageName)
+        }
+        history.pushState({}, pageName, url)
         pageSwtich('overall')
     } else if (target.matches('.fa-cog')) {
         iconNav.classList.toggle('active')

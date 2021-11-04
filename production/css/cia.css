@@ -27,7 +27,7 @@
 }
 .right-col #header-fix {
   background-color: white;
-  z-index: 4;
+  z-index: 10;
   padding: 10px;
   position: relative;
   height: auto;
