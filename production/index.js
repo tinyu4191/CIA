@@ -1,5 +1,4 @@
-// jsonPath
-jsonPath = 'http://tnvqis03/JsonServiceTest'
+console.log('CIA')
 const getUrlString = new URL(window.location.href)
 // fullscreen
 if (!getUrlString.searchParams.has('fullscreen')) {
@@ -74,6 +73,7 @@ const iconChangeStatus = () => {
 }
 //  VIP
 let customerVIP
+const buBrandVIP = []
 async function getViP() {
     let storage = window.sessionStorage.getItem('EngCust')
     let res, loginUserID, loginEmpNo
@@ -99,7 +99,7 @@ async function getViP() {
         })
     }
     await getUserInfo()
-    console.log(loginUserID, loginEmpNo)
+    console.log('User Info:', loginUserID, loginEmpNo)
     const data = res.filter((e) => e.STRATEGIC_CUSTOMER === 'Y')
     const userData = data
         .filter((e) => {
@@ -108,11 +108,25 @@ async function getViP() {
         .concat(data.filter((e) => e.LEVEL1 === loginEmpNo))
         .concat(data.filter((e) => e.LEVEL2 === loginEmpNo))
         .concat(data.filter((e) => e.LEVEL3 === loginEmpNo))
-    console.log(userData)
     customerVIP = Array.from(new Set(userData.map((e) => e.CUST_GROUP)))
 
     getBrandOption(option.buSelected)
 }
+/* VIP EmpNo */
+const VIPEmpNo = [
+    '10002451',
+    '10010106',
+    '19000415',
+    '10003967',
+    '17019039',
+    '10002829',
+    '20032848',
+    '10007255',
+    '10007916',
+    '03000172',
+    '10004563',
+    '21001059',
+]
 
 // function
 const pageSwtich = (name) => {
@@ -141,8 +155,8 @@ const renderRanking = (data) => {
     const past = document.querySelector('#RankingPast'),
         performance = document.querySelector('#RankingPerformance img'),
         current = document.querySelector('#RankingCurrent')
-    let valuePast = data.filter((e) => e.DATA_CATE === 'Past').filter((e) => e.VALUE === '0').length
-    let valueCurrent = data.filter((e) => e.DATA_CATE === 'Current').filter((e) => e.VALUE === '0').length
+    let valuePast = data.filter((e) => e.DATA_CATE === 'Past' && e.VALUE === '0').length
+    let valueCurrent = data.filter((e) => e.DATA_CATE === 'Current' && e.VALUE === '0').length
     let total = data.filter((e) => e.DATA_CATE === 'Past').length
     past.innerHTML = `${((valuePast / total) * 100).toFixed(0)}%`
     current.innerHTML = `${((valueCurrent / total) * 100).toFixed(0)}%`
@@ -170,8 +184,8 @@ const renderCopq = (data) => {
     data.sort((a, b) => {
         return Number(a.MONTH) > Number(b.MONTH) ? 1 : -1
     })
-    const m2COPQ = Number(data[0].VALUE).toFixed(2)
-    const preM2COPQ = Number(data[1].VALUE).toFixed(2)
+    const preM2COPQ = Number(data[0].VALUE).toFixed(2)
+    const m2COPQ = Number(data[1].VALUE).toFixed(2)
     past.innerHTML = `${preM2COPQ}<br>USD`
     current.innerHTML = `${m2COPQ}<br>USD`
     let imgName = ''
@@ -363,13 +377,15 @@ const getBrandOption = (bu) => {
 }
 
 const getVIPBUBrand = (data) => {
+    console.table(data)
     const bus = Array.from(new Set(data.map((e) => e.APPLICATION_LVL_1)))
+    buBrandVIP.push(...bus)
     renderBuOption(bus)
 }
 
 const renderLightBox = (json) => {
     // 客戶排名達標率
-    const valueRanking = json.filter((e) => e.BOARD_CATE === '客戶情資_排名達標率')
+    const valueRanking = json.filter((e) => e.BOARD_CATE === '客戶情資_排名達標率' && e.APPLICATION_LVL_2 !== 'All')
     renderRanking(valueRanking)
 
     // CoPQ/m²
@@ -377,7 +393,9 @@ const renderLightBox = (json) => {
     renderCopq(valueCopq)
 
     // OBA Cost
-    const valueObaCost = json.filter((e) => e.BOARD_CATE === '客戶情資_OBACost')
+    const valueObaCost = json
+        .filter((e) => e.BOARD_CATE === '客戶情資_OBACost')
+        .filter((e) => !['AA', 'SET_TV'].includes(e.APPLICATION_LVL_1))
     renderCost(valueObaCost)
 
     // CID
@@ -497,8 +515,9 @@ $.when(getDataVlrrAll()).then((res) => {
 })
 
 // render
-iconChangeStatus()
 getViP()
+showpie()
+iconChangeStatus()
 urlStateChange()
 
 // event
@@ -564,7 +583,6 @@ iconBox.addEventListener('click', (params) => {
 })
 
 downlistBU.addEventListener('change', () => {
-    console.log(downlistBU.value)
     option.buSelected = downlistBU.value
 
     iconChangeStatus()
