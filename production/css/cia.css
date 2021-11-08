@@ -57,6 +57,12 @@
   border: 2px solid #d0d0d0;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 #header-fix ul {
   position: absolute;
   top: 115px;
@@ -484,6 +490,128 @@
   display: none;
   height: 100%;
   background-color: rgba(64, 128, 128, 0.6);
+}
+
+#page-opponents {
+  background-color: transparent !important;
+  border: none !important;
+}
+#page-opponents > div {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 10px;
+}
+#page-opponents > div > div {
+  margin: 10px;
+}
+#page-opponents > div > div:nth-child(1) {
+  background-color: rgba(208, 208, 208, 0.4);
+  border: 2px solid #d0d0d0;
+  border-radius: 10px;
+  padding: 10px;
+  overflow-y: auto;
+  width: 25%;
+}
+#page-opponents > div > div:nth-child(1) > ul {
+  font-size: 24px;
+  color: #006466;
+  font-weight: 600;
+}
+#page-opponents > div > div:nth-child(1) > ul li {
+  padding: 5px 10px;
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+#page-opponents > div > div:nth-child(1) > ul li:hover {
+  border-radius: 25px;
+  background-color: #006466;
+  color: white;
+  text-overflow: clip;
+}
+#page-opponents > div > div:nth-child(1)::-webkit-scrollbar {
+  width: 10px;
+}
+#page-opponents > div > div:nth-child(1)::-webkit-scrollbar-track {
+  background-color: #a0a0a0;
+  border-radius: 2em;
+}
+#page-opponents > div > div:nth-child(1)::-webkit-scrollbar-thumb {
+  background-color: #d0d0d0;
+  border-radius: 2em;
+}
+#page-opponents > div > div:nth-child(2) {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 0px;
+          flex: 1 0 0;
+}
+#page-opponents > div > div:nth-child(3) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 20%;
+}
+#page-opponents > div > div:nth-child(3) .information-title {
+  font-size: 48px;
+  color: #006466;
+  font-weight: 700;
+  white-space: nowrap;
+  text-shadow: 0.05em 0.05em 0em #d0d0d0;
+  -webkit-transform: scale(1.2) translateY(30%);
+          transform: scale(1.2) translateY(30%);
+}
+#page-opponents > div > div:nth-child(3) ul {
+  width: 80%;
+  font-size: 20px;
+  color: gray;
+  background-color: white;
+  border: 2px solid #d0d0d0;
+  border-radius: 10px;
+  padding: 30px 10px 10px;
+  text-align: center;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow-y: auto;
+}
+#page-opponents > div > div:nth-child(3) ul li {
+  cursor: pointer;
+}
+#page-opponents > div > div:nth-child(3) ul li:hover {
+  border-bottom: 1px solid #ccc;
+}
+#page-opponents > div > div:nth-child(3) ul li + li {
+  margin-top: 10px;
+}
+#page-opponents > div > div:nth-child(3) ul::-webkit-scrollbar {
+  width: 10px;
+}
+#page-opponents > div > div:nth-child(3) ul::-webkit-scrollbar-track {
+  background-color: #a0a0a0;
+  border-radius: 2em;
+}
+#page-opponents > div > div:nth-child(3) ul::-webkit-scrollbar-thumb {
+  background-color: #d0d0d0;
+  border-radius: 2em;
 }
 
 #page-organization {
