@@ -411,6 +411,10 @@ const urlStateChange = () => {
         pageSwtich(page)
         if (page === 'organization') oraganizationPage(page)
         if (page === 'opponents') opponentsPage()
+        if (page === 'overall') {
+            iconBox.style.display = 'none'
+            overallPage()
+        }
     }
 }
 
@@ -501,9 +505,77 @@ $.when(getDataVlrrAll()).then((res) => {
     renderVlrr(res)
 })
 
+const swiperStart = () => {
+    /* Load News */
+    const news = [
+        {
+            title: '合肥XXXXXX',
+            content:
+                '照影教張工下接病官影維年買中十電會半。活高天識望生流馬名？平動度字畫特現進知天自清畫！世響一館國天給是較白們年，技導手林然化歡代長縣……當而作。近頭年想智部好量到企歡經靈考的者行司科這苦油這水，醫然著阿經頭界東排際職心是家集紀下大世如子。',
+            type: '競爭對手',
+        },
+        {
+            title: '東機吸受燈小天寫該發',
+            content:
+                '也這兒一們主車業院立事下現？世動童如識於了沒到。研作小、代能華；交想香校，究不整是那其念事？器意好象消創開？',
+            type: '競爭對手',
+        },
+        { title: '合肥XXXXXX', content: 'Test1233', type: '競爭對手' },
+        {
+            title: '無樣力政一兒賣夠自好務',
+            content:
+                '步自歷兒，一首燈日然那視的通畫提認接麼的爸響出用歡知果好回母我，布走醫不的們不紀散式等格中印也十銷們長於打公臺不取境到商影情驚司配。',
+            type: '競爭對手',
+        },
+        {
+            title: '出報的希人情物模王應建洋人帶',
+            content:
+                '媽性媽，非是然。年這頭平高能，同種大下他。情麼分世選官的，燈也帶數級有衣經毛，在上門反小高卻重的來常臺局人，東間兒人展市價去明海腳人歡化看證區們工爭。不慢前地資回作形才大就……也影進物習點，過醫夠其作地流文？點這而著省不許歌教格我包元好小水不……親時門推元理關',
+            type: '競爭對手',
+        },
+    ]
+    const swiperDiv = document.querySelector('.swiper'),
+        newsContent = document.querySelector('.news-content')
+    swiperDiv.style.width = newsContent.clientWidth + 'px'
+    swiperDiv.style.height = newsContent.clientHeight + 'px'
+    const swiperWapper = document.querySelector('.swiper-wrapper')
+    news.forEach((item, index) => {
+        swiperWapper.innerHTML += `
+    <div class="swiper-slide">
+        <div>${item.title}</div>
+        <div><img src="https://picsum.photos/100?random=${index + 1}"><div>${item.content}</div></div>
+        <div>${item.type}</div>
+    </div>
+    `
+    })
+    /* New Swiper */
+    let swiper = new Swiper('.swiper', {
+        // Optional parameters
+        direction: 'horizontal',
+        loop: true,
+        // // If we need pagination
+        pagination: {
+            el: '.swiper-pagination',
+        },
+        speed: 1000,
+        autoplay: {
+            delay: 2500,
+        },
+        effect: 'coverflow',
+    })
+    swiper.el.onmouseover = function () {
+        //滑鼠放上暫停輪播
+        swiper.autoplay.stop()
+    }
+    swiper.el.onmouseleave = function () {
+        swiper.autoplay.start()
+    }
+}
+
 // render
 getViP()
 showpie()
+swiperStart()
 iconChangeStatus()
 urlStateChange()
 
@@ -524,7 +596,6 @@ iconNav.addEventListener('click', (params) => {
             return urlCopy.href
         })()
     } else if (target.matches('.fa-search-plus')) {
-        iconBox.style.display = 'none'
         let url = new URL(window.location.href)
         let pageName = 'overall'
         if (url.searchParams.has('page')) {
@@ -534,6 +605,7 @@ iconNav.addEventListener('click', (params) => {
         }
         history.pushState({}, pageName, url)
         pageSwtich('overall')
+        urlStateChange()
     } else if (target.matches('.fa-cog')) {
         iconNav.classList.toggle('active')
         const liList = document.querySelectorAll('.icon-nav li')

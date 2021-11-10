@@ -59,6 +59,8 @@
             href="http://tnvqis03/Dashboard_Template/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css"
             rel="stylesheet"
         />
+        <!-- swiper -->
+        <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
         <link rel="stylesheet" href="css/cia.css" />
     </head>
 
@@ -433,7 +435,14 @@
                                         <h1>NEWS</h1>
                                         <a href=""> 新增 </a>
                                     </div>
-                                    <div class="news-content"></div>
+                                    <div class="news-content">
+                                        <div class="swiper">
+                                            <!-- Additional required wrapper -->
+                                            <div class="swiper-wrapper"></div>
+                                            <!-- If we need pagination -->
+                                            <div class="swiper-pagination"></div>
+                                        </div>
+                                    </div>
                                     <div class="news-footer">
                                         <a href="">More...</a>
                                     </div>
@@ -446,7 +455,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="page-overall"></div>
+                        <div id="page-overall">
+                            <div>
+                                <div id="overall-sorting-rate"></div>
+                                <div id="overall-customer-ranking"></div>
+                                <div id="overall-caerb"></div>
+                                <div id="overall-copq"></div>
+                                <div id="overall-vlrr"></div>
+                                <div id="overall-customer-claim"></div>
+                            </div>
+                        </div>
                         <div id="page-opponents" class="page">
                             <div>
                                 <div class="nav-opponents">
@@ -488,6 +506,9 @@
         <script src="http://tnvqis03/Dashboard_Template/vendors/echarts/echarts-5.0.2/dist/echarts.min.js"></script>
         <script src="http://tnvqis03/Dashboard_Template/vendors/echarts/map/js/world.js"></script>
 
+        <!-- swiper -->
+        <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
         <!-- Datatables -->
         <script src="http://tnvqis03/Dashboard_Template/vendors/datatables.net-bs/js/jquery.dataTables.min.js"></script>
         <script src="http://tnvqis03/Dashboard_Template/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
@@ -504,8 +525,6 @@
         <script src="http://tnvqis03/Dashboard_Template/vendors/jszip/dist/jszip.min.js"></script>
         <script src="http://tnvqis03/Dashboard_Template/vendors/pdfmake/build/pdfmake.min.js"></script>
         <script src="http://tnvqis03/Dashboard_Template/vendors/pdfmake/build/vfs_fonts.js"></script>
-        <!-- swiper -->
-        <script src="swiper-bundle.min.js"></script>
         <!-- Custom Theme Scripts -->
         <script src="http://tnvqis03/Dashboard_Template/build/js/menu.js"></script>
         <script src="http://tnvqis03/Dashboard_Template/build/js/custom.js"></script>
@@ -514,6 +533,7 @@
         <script src="./rosePie.js"></script>
         <script src="./oranization.js"></script>
         <script src="./opponents.js"></script>
+        <script src="./overall.js"></script>
         <script src="./index.js"></script>
     </body>
 </html>
