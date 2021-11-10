@@ -1,4 +1,4 @@
-const oraganizationPage = (name) => {
+const oraganizationPage = (name = 'organization') => {
     const pageMain = document.querySelector(`#page-${name}`)
     const divHeader = document.createElement('div')
     const divContent = document.createElement('div')

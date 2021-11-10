@@ -23,6 +23,8 @@ const bu = getUrlString.searchParams.get('bu')
 const brand = getUrlString.searchParams.get('brand')
 const si = getUrlString.searchParams.get('si')
 
+// 判斷page
+const page = getUrlString.searchParams.get('page')
 // option
 let option = {
     buSelected: bu === null ? '' : bu,
@@ -38,12 +40,20 @@ const handler = {
          * Bu為空 => Brand, SI 為空
          * Brand為空 => SI為空
          */
-        if (prop === 'buSelected' && value === '') {
-            Object.keys(obj).forEach((e) => {
-                obj[e] = ''
-            })
+        if (prop === 'buSelected') {
+            if (value === '') {
+                Object.keys(obj).forEach((e) => {
+                    obj[e] = ''
+                })
+                getUrlString.searchParams.delete('page')
+                window.location = getUrlString.href
+            }
+        } else if (prop === 'brandSelected') {
+            console.log(page)
+            if (page === 'organization') oraganizationPage(page)
         }
-        showpie()
+
+        if (page === null) showpie()
     },
     get: (obj, prop) => {
         return obj[prop]
@@ -415,6 +425,7 @@ const urlStateChange = () => {
             iconBox.style.display = 'none'
             overallPage()
         }
+        if (page === 'query') iconBox.style.display = 'none'
     }
 }
 
@@ -556,6 +567,10 @@ const swiperStart = () => {
         // // If we need pagination
         pagination: {
             el: '.swiper-pagination',
+            clickable: true,
+            renderBullet: function (index, className) {
+                return '<span class="' + className + '">' + (index + 1) + '</span>'
+            },
         },
         speed: 1000,
         autoplay: {
@@ -604,7 +619,7 @@ iconNav.addEventListener('click', (params) => {
             url.searchParams.append('page', pageName)
         }
         history.pushState({}, pageName, url)
-        pageSwtich('overall')
+        pageSwtich(pageName)
         urlStateChange()
     } else if (target.matches('.fa-cog')) {
         iconNav.classList.toggle('active')
@@ -654,4 +669,18 @@ downlistBrand.addEventListener('change', () => {
     if (option.brandSelected === '') siSelected = ''
     initSearchparams()
     iconChangeStatus()
+})
+
+const linkMore = document.querySelector('#link-more')
+linkMore.addEventListener('click', () => {
+    let url = new URL(window.location.href)
+    let pageName = 'query'
+    if (url.searchParams.has('page')) {
+        url.searchParams.set('page', pageName)
+    } else {
+        url.searchParams.append('page', pageName)
+    }
+    history.pushState({}, pageName, url)
+    pageSwtich(pageName)
+    urlStateChange()
 })
