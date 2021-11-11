@@ -657,7 +657,7 @@ ul {
   margin: 2px 0;
 }
 #page-query > div > div:nth-child(1) .button-box {
-  margin: 20px auto;
+  margin: 20px 0 0 auto;
 }
 #page-query > div > div:nth-child(1) .button-box button {
   border: none;
@@ -669,13 +669,13 @@ ul {
 #page-query > div > div:nth-child(1) .button-box button:nth-child(1) {
   background-color: #eac100;
 }
-#page-query > div > div:nth-child(1) .button-box button:nth-child(1):active {
+#page-query > div > div:nth-child(1) .button-box button:nth-child(1):hover {
   background-color: #ffdc35;
 }
 #page-query > div > div:nth-child(1) .button-box button:nth-child(2) {
   background-color: #01b468;
 }
-#page-query > div > div:nth-child(1) .button-box button:nth-child(2):active {
+#page-query > div > div:nth-child(1) .button-box button:nth-child(2):hover {
   background-color: #02df82;
 }
 #page-query > div > div:nth-child(2) {
@@ -711,6 +711,11 @@ ul {
 }
 #page-query > div > div:nth-child(2) .result-title i:hover {
   color: #f0f0f0;
+}
+#page-query > div > div:nth-child(2) .result-title i.disable {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.6;
 }
 #page-query > div > div:nth-child(2) .result-table {
   background-color: white;

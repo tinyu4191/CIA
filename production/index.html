@@ -494,10 +494,10 @@
                                 <div class="result-box">
                                     <div class="result-title">
                                         <h1>CQE情資回饋</h1>
-                                        <i class="fas fa-file-download"></i>
+                                        <i class="fas fa-download disable" id="exportToExcel"></i>
                                     </div>
                                     <div class="result-table">
-                                        <table>
+                                        <table id="result">
                                             <thead class="table-thead"></thead>
                                             <tbody class="table-tbody"></tbody>
                                         </table>
@@ -548,6 +548,8 @@
 
         <!-- swiper -->
         <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+        <!-- sheetJS -->
+        <script src="./sheetjs-master/dist/xlsx.full.min.js"></script>
 
         <!-- Datatables -->
         <script src="http://tnvqis03/Dashboard_Template/vendors/datatables.net-bs/js/jquery.dataTables.min.js"></script>

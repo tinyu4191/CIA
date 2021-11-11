@@ -457,7 +457,7 @@ ul {
                 }
             }
             .button-box {
-                margin: 20px auto;
+                margin: 20px 0 0 auto;
 
                 button {
                     border: none;
@@ -468,13 +468,13 @@ ul {
                 }
                 button:nth-child(1) {
                     background-color: #eac100;
-                    &:active {
+                    &:hover {
                         background-color: #ffdc35;
                     }
                 }
                 button:nth-child(2) {
                     background-color: #01b468;
-                    &:active {
+                    &:hover {
                         background-color: #02df82;
                     }
                 }
@@ -499,6 +499,11 @@ ul {
                     font-size: 28px;
                     &:hover {
                         color: #f0f0f0;
+                    }
+                    &.disable {
+                        pointer-events: none;
+                        cursor: default;
+                        opacity: 0.6;
                     }
                 }
             }

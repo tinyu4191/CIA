@@ -7,7 +7,8 @@ const thead = document.querySelector('.table-thead'),
     infoType = document.querySelector('#info-type'),
     ciType = document.querySelector('#ci-type'),
     inputDateFrom = document.querySelector('#input-date-from'),
-    inputDateTo = document.querySelector('#input-date-to')
+    inputDateTo = document.querySelector('#input-date-to'),
+    exportButton = document.querySelector('#exportToExcel')
 
 // select
 let dateFrom = '',
@@ -73,6 +74,25 @@ const renderResultTable = (res) => {
     tbody.innerHTML = tbodyContent
 }
 
+// export Excel
+function html_table_to_excel(type) {
+    const data = document.querySelector('#result')
+    const today = new Date()
+    const year = today.getFullYear()
+    const month = today.getMonth() + 1 < 10 ? `0${today.getMonth() + 1}` : today.getMonth() + 1
+    const date = today.getDate() < 10 ? `0${today.getDate()}` : today.getDate()
+
+    var file = XLSX.utils.table_to_book(data, { sheet: 'sheet1' })
+
+    XLSX.write(file, { bookType: type, bookSST: true, type: 'base64' })
+
+    XLSX.writeFile(file, `情資回饋_${year}_${month}_${date}.${type}`)
+}
+
+exportButton.addEventListener('click', () => {
+    html_table_to_excel('xlsx')
+})
+
 const queryPage = () => {
     $.when(getJson()).then((res) => {
         searchBox.classList.add('animation')
@@ -96,9 +116,12 @@ const queryPage = () => {
             if (dateTo !== '') dataCopy = dataCopy.filter((e) => e.UPDATE_DATE.time <= new Date(dateTo).getTime())
             if (infoTypeSelected !== '') dataCopy = dataCopy.filter((e) => e.INFO_TYPE === infoTypeSelected)
             if (ciTypeSelected !== '') dataCopy = dataCopy.filter((e) => e.CI_FORM_TYPE === ciTypeSelected)
+
+            exportButton.classList.remove('disable')
             renderResultTable(dataCopy)
         })
         btnSearchAll.addEventListener('click', () => {
+            exportButton.classList.remove('disable')
             renderResultTable(res)
         })
     })
