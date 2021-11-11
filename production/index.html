@@ -467,13 +467,41 @@
                         </div>
                         <div id="page-query">
                             <div>
-                                <div class="search-box"></div>
+                                <div class="search-box">
+                                    <div class="input-date-box">
+                                        <div>
+                                            <span>FROM</span>
+                                            <input type="date" id="input-date-from" />
+                                        </div>
+                                        <div>
+                                            <span>TO</span>
+                                            <input type="date" id="input-date-to" />
+                                        </div>
+                                    </div>
+                                    <span>情資類型</span>
+                                    <select name="" id="info-type">
+                                        <option value="">----請選擇----</option>
+                                    </select>
+                                    <span>內容類別</span>
+                                    <select name="" id="ci-type">
+                                        <option value="">----請選擇----</option>
+                                    </select>
+                                    <div class="button-box">
+                                        <button class="button-search">Search</button
+                                        ><button class="button-searchAll">Overview</button>
+                                    </div>
+                                </div>
                                 <div class="result-box">
                                     <div class="result-title">
                                         <h1>CQE情資回饋</h1>
                                         <i class="fas fa-file-download"></i>
                                     </div>
-                                    <div class="result-table"></div>
+                                    <div class="result-table">
+                                        <table>
+                                            <thead class="table-thead"></thead>
+                                            <tbody class="table-tbody"></tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -546,6 +574,7 @@
         <script src="./oranization.js"></script>
         <script src="./opponents.js"></script>
         <script src="./overall.js"></script>
+        <script src="./query.js"></script>
         <script src="./index.js"></script>
     </body>
 </html>

@@ -581,6 +581,102 @@ ul {
 }
 #page-query > div > div:nth-child(1) {
   width: 250px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  visibility: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  font-size: 16px;
+  color: black;
+  padding-top: 10px;
+}
+#page-query > div > div:nth-child(1).animation {
+  visibility: visible;
+  -webkit-animation: moveIn 1.5s linear;
+          animation: moveIn 1.5s linear;
+}
+@-webkit-keyframes moveIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+  75% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+  }
+}
+@keyframes moveIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+  75% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+  }
+}
+#page-query > div > div:nth-child(1) span {
+  margin: 2px 0;
+}
+#page-query > div > div:nth-child(1) input[type=date] {
+  padding-left: 10px;
+}
+#page-query > div > div:nth-child(1) select {
+  padding: 2px;
+  padding-left: 10px;
+}
+#page-query > div > div:nth-child(1) .input-date-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+}
+#page-query > div > div:nth-child(1) .input-date-box > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 2px 0;
+}
+#page-query > div > div:nth-child(1) .button-box {
+  margin: 20px auto;
+}
+#page-query > div > div:nth-child(1) .button-box button {
+  border: none;
+  outline: none;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+#page-query > div > div:nth-child(1) .button-box button:nth-child(1) {
+  background-color: #eac100;
+}
+#page-query > div > div:nth-child(1) .button-box button:nth-child(1):active {
+  background-color: #ffdc35;
+}
+#page-query > div > div:nth-child(1) .button-box button:nth-child(2) {
+  background-color: #01b468;
+}
+#page-query > div > div:nth-child(1) .button-box button:nth-child(2):active {
+  background-color: #02df82;
 }
 #page-query > div > div:nth-child(2) {
   -webkit-box-flex: 1;
@@ -618,12 +714,62 @@ ul {
 }
 #page-query > div > div:nth-child(2) .result-table {
   background-color: white;
-  width: 100%;
   height: 100%;
-  max-height: 100%;
-  overflow: hidden;
+  max-width: calc(100vw - 320px);
+  overflow: auto;
   border: 2px solid #d0d0d0;
   border-radius: 10px;
+}
+#page-query > div > div:nth-child(2) .result-table > table td,
+#page-query > div > div:nth-child(2) .result-table > table th {
+  border: 1px solid #d0d0d0;
+  padding: 5px 10px;
+}
+#page-query > div > div:nth-child(2) .result-table > table th {
+  font-size: 18px;
+  font-weight: 600;
+  background-color: #01987a;
+  color: white;
+}
+#page-query > div > div:nth-child(2) .result-table > table thead tr th {
+  position: sticky;
+  top: 0;
+  /* 列首永遠固定於上 */
+}
+#page-query > div > div:nth-child(2) .result-table > table td:nth-child(1),
+#page-query > div > div:nth-child(2) .result-table > table tr th:nth-child(1) {
+  position: sticky;
+  left: -1px;
+  /* 首行永遠固定於左 */
+  z-index: 1;
+}
+#page-query > div > div:nth-child(2) .result-table > table tr th:nth-child(1) {
+  z-index: 2;
+}
+#page-query > div > div:nth-child(2) .result-table > table td:nth-child(1).even,
+#page-query > div > div:nth-child(2) .result-table > table td.even {
+  background-color: #f3f3f3;
+  color: #01987a;
+}
+#page-query > div > div:nth-child(2) .result-table > table td:nth-child(1).odd,
+#page-query > div > div:nth-child(2) .result-table > table td.odd {
+  background-color: white;
+}
+#page-query > div > div:nth-child(2) .result-table::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+#page-query > div > div:nth-child(2) .result-table::-webkit-scrollbar-track {
+  background-color: #f3f3f3;
+  border-radius: 2em;
+}
+#page-query > div > div:nth-child(2) .result-table::-webkit-scrollbar-thumb {
+  background-color: #01987a;
+  border-radius: 2em;
+}
+#page-query > div > div:nth-child(2) .result-table::-webkit-scrollbar-corner {
+  background-color: #f3f3f3;
+  border-radius: 0 0 2em 0;
 }
 
 #page-opponents {

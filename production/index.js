@@ -425,7 +425,10 @@ const urlStateChange = () => {
             iconBox.style.display = 'none'
             overallPage()
         }
-        if (page === 'query') iconBox.style.display = 'none'
+        if (page === 'query') {
+            iconBox.style.display = 'none'
+            queryPage()
+        }
     }
 }
 
